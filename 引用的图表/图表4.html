@@ -1,0 +1,103 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=pie-roseType-simple&code=PYBwLglsB2AEC8sDeAoSYA2BTAXK2BsYWAHmDgOSB_aoBYRALDoC56g3vGBdcoN3KgX9qCZeoCFugFUqAucwoAabADNysAEQBjLNGIAnaSLCgc0gIwBWVcTIBlMAE9sOZOJhhDEAF65YAJjoBfESgLvPsWcAzASjgA2tIAxABiEQBCAOx0ACKq4VEAHACCAGx6ALoehETA_pAgFviEAM4AFsAA7jhgSgCuWPmEjRAA5p1YQbAUEMQAtqI-BACGJBAVAArAEIq9ZWPtJiCOFLJKwBUVowWuPt4FnUoQACbLBX6K4wsAMuMARlgYFo0tbceF_k_AJFdKjV6kRmq0VuIsOMwE0lI5ygUhuMlABrMqwap1d5g2DfArnaHjABqECwIKQGOB2M-sDh43OAHloBgTBZxOMMBUsHjCEjOhBZAAVNbwylY0E00zrCwUECkig8ghwirqOHozEgj5YXFtAoVcYANyw6QqAEk-aKNdTtYcDkc2lyzlgKhZgisEYRoOMhhsAHJdKqQaCdDnagDCVWRYH2BSIIplcqwMeusIqgU0IHmixUusISnpECaLtgwQAzDoRM4dAAGPIrAjybOuig1gCkon6Oh07brsdpOywwul_WRUNG9dggywQ2MZnhE4IfyU516ACUC0WLFotBPFbAMM9XngF2L6lrcwUrIpbA4cFpMhedRPpyBIxVpoC-1ZZJv-onk7GTwYLChh-MOmxFMuCzQlghgmCq04ULuj4EmA4yuieFIGhyLQWE4pZ0JWXo-jKgDf2oAQjaAH0-gB6noAI9qABpGFBPn2BBYThjhONWpZEd6GyAPiugDctoAsHKAF4ZTF7qxsDYcBjhaKkWg8SR_TkYA2vLiY-knSbhsC6IRsDERsFGAKB2gADiupmFSexW7VrEikbIAQ5GAJKK5kscglkyRYsQVvpvEyoAyP6AMeRgDRyoA2UouSxbEebAmQAJx2TKgC3DoAjE48IA4aaAGjK4V9pF2l0HpBkyoA6dqAJqmgCH8oAD3JZbGOWOKW1bxf0gDzfoAcraAHnagAHBlVBQ1XhTgNRQgD7sYAcxldYQPWwLZPlKRQgDVroAowaAHymgAA-qNOQrLasBra4ADcQA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+title:{
+    text:'图表4：年轻人去寺庙的动机',left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1'},
+  },
+  color:["#FFB74D","#FF8A65"],
+    tooltip: {
+    show:true,
+    trigger: 'item',
+    axisPointer: {
+      type: 'cross',
+    }
+  },
+    grid: {
+    containLabel: true,
+  },
+  series: [
+    {
+      name: '年轻人去寺庙的动机',
+      type: 'pie',
+      cursor:"pointer",
+      radius: [35, 220],
+      center: ['50%', '55%'],
+      roseType: 'area',
+
+      itemStyle: {
+        borderRadius: 11
+      },
+      label:{
+        show:true,
+        fontSize:16,
+        color: '#F2E8CD',
+      },
+      emphasis: {
+        focus: 'pie',
+        blurScope: 'coordinateSystem'
+      },
+      data: [
+        { value: 234, name: '寻求精神寄托' },
+        { value: 203, name: '生活不顺' },
+        { value: 181, name: '求佛' },
+        { value: 154, name: '寻求清净' },
+        { value: 107, name: '观光' },
+        { value: 75, name: '缓解压力' },
+        { value: 69, name: '热爱寺庙文化' },
+        { value: 44, name: '宗教信仰' },
+        { value: 30, name: '经济实惠' },
+        { value: 22, name: '跟风' },
+        { value: 7, name: '疫情放开' },
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

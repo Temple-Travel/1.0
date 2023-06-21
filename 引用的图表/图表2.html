@@ -1,0 +1,198 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=bar-drilldown
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container"  style="height:75%"></div>
+
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+      title: {
+    text: '图表2：热门寺庙大揭秘——原来它们都来自这些省份', left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1',},
+  },
+  grid: {
+    left: '20%',
+    right: '20%',
+    top:"15%"
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+    },
+  color: ["#FFD54F"],
+  xAxis: {
+    data: ['浙江省', '江苏省', '河南省','北京市'],
+    axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+  },
+  yAxis: {
+    axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+    nameTextStyle: {
+      fontSize: 14
+    },
+  },
+  dataGroupId: '',
+  animationDurationUpdate: 500,
+  series: {
+    type: 'bar',
+    barMaxWidth:"35%",
+    name:"热门寺庙数量/个",
+    id: 'sales',
+    data: [
+      {
+        value: 4,
+        groupId: '浙江省',
+        itemStyle:{color:'#FFE082'}
+      },
+      {
+        value: 3,
+        groupId: '江苏省',
+        itemStyle:{color:'#FFE082'}
+      },
+      {
+        value: 2,
+        groupId: '河南省',
+        itemStyle:{color:'#FFE082'}
+      },
+      {
+        value: 4,
+        groupId: '北京市',
+        itemStyle:{color:'#FFE082'}
+      }
+    ],
+    universalTransition: {
+      enabled: true,
+      divideShape: 'clone'
+    }
+  }
+};
+const drilldownData = [
+  {
+    dataGroupId: '浙江省',
+    data:[
+    ['灵隐寺', 82000],
+    ['香积寺', 22000],
+    ['法喜寺', 11000],
+    ['净慈寺', 2731],
+  ]
+  },
+  {
+    dataGroupId: '江苏省',
+    data: [
+      ['鸡鸣寺',68000],
+      ['西园寺', 5658],
+      ['寒山寺',5421]
+    ]
+  },
+  {
+    dataGroupId: '河南省',
+    data: [
+      ['少林寺',51000],
+      ['白马寺', 10000],
+    ]
+  },
+  {
+    dataGroupId: '北京市',
+    data: [
+      ['雍和宫',35000],
+      ['白瀑寺',3408],
+      ['龙泉寺',1704],
+      ['广化寺',1620],
+    ]
+  }
+];
+myChart.on('click', function (event) {
+  if (event.data) {
+    var subData = drilldownData.find(function (data) {
+      return data.dataGroupId === event.data.groupId;
+    });
+    if (!subData) {
+      return;
+    }
+    myChart.setOption({
+      xAxis: {
+        data: subData.data.map(function (item) {
+          return item[0];
+        })
+      },
+      series: {
+        type: 'bar',
+        id: 'sales',
+        name:'搜索指数平均值',
+        dataGroupId: subData.dataGroupId,
+        data: subData.data.map(function (item) {
+          return item[1];
+        }),
+        universalTransition: {
+          enabled: true,
+          divideShape: 'clone'
+        }
+      },
+      graphic: [
+        {
+          type: 'text',
+          left: 85,
+          top: 50,
+          style: {
+            text: 'Back',
+            fontSize: 18,
+            fill: '#F2E8CD',
+          },
+          onclick: function () {
+            myChart.setOption(option);
+          }
+        }
+      ]
+    });
+  }
+});
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

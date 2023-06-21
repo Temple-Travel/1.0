@@ -1,0 +1,175 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=multiple-y-axis
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const colors = ['#FF7043', '#FF9800', '#FFC107'];
+option = {
+  color: colors,
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    }
+  },
+  grid: {
+    right: '20%',top:"20%"
+  },
+  title: {
+    text: '图表8：微博话题#媒体评年轻人不上课不上进只上香#3月趋势',left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1',},
+  },
+  legend: {
+    data: ['阅读次数', '讨论次数', '原创人数'],bottom:"10", itemWidth:25,
+    itemHeight:18,
+    itemGap:20,textStyle: {fontSize: 14,color: '#F2E8CD'},
+  },
+  xAxis: [
+    {
+      type: 'category',
+      axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+      axisTick: {
+        alignWithLabel: true
+      },
+      // prettier-ignore
+      data: ['2023/3/4', '2023/3/5', '2023/3/6', '2023/3/7', '2023/3/8', '2023/3/9', '2023/3/10','2023/3/11','2023/3/12','2023/3/13',
+    '2023/3/14','2023/3/15','2023/3/16','2023/3/17','2023/3/18','2023/3/19','2023/3/20','2023/3/21','2023/3/22','2023/3/23','2023/3/24',
+    '2023/3/25','2023/3/26','2023/3/27','2023/3/28','2023/3/29','2023/3/30','2023/3/31','2023/4/1','2023/4/2']
+    },
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+      name: '阅读次数',
+      nameTextStyle: {
+      fontSize:14,
+      color: '#F2E8CD',
+    },
+      position: 'right',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[0]
+        }
+      },
+      
+    },
+    {
+      type: 'value',
+      axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+      name: '讨论次数',
+      nameTextStyle: {
+      fontSize:14,
+      color: '#F2E8CD',
+    },
+      position: 'right',
+      alignTicks: true,
+      offset: 120,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[1]
+        }
+      },
+      
+    },
+    {
+      type: 'value',
+      name: '原创人数',
+      nameTextStyle: {
+      fontSize:14,
+      color: '#F2E8CD',
+    },
+      axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+      position: 'left',
+      alignTicks: true,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: colors[2]
+        }
+      },
+    }
+  ],
+  series: [
+    {
+      name: '阅读次数',
+      type: 'bar',
+      data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0,0,0,125780682,9211191,3431886,1613887,1145220,861932,927348,463698,183696,112922,57796,21838,33888]
+    },
+    {
+      name: '讨论次数',
+      type: 'bar',
+      yAxisIndex: 1,
+      data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0,0,0,12582,1679,530,198,95,53,55,24,21,134,121,9,11]
+    },
+    {
+      name: '原创人数',
+      type: 'line',
+      yAxisIndex: 2,
+      data: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0,0,0,6782,500,126,47,34,15,12,9,9,13,6,3,7]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

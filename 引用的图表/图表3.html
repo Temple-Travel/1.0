@@ -1,0 +1,113 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=funnel&code=PYBwLglsB2AEC8sDeAoSYA2BTAXK2BsYWAHmDgOSB_aoBYRAzIFj_gLnqDe8YF1ygXHKADcoBJygjE6BsBMBf2oEy9CgBpsAM3KwARAGMs0YgCc54sKBxyAjAFYNxMgGUwAT2w5kUmGBMQAXrlgAmACwBfcSgLffsArAGMCqOADacgDEAGIxAIIAQgCcuhrRcQAi-u4x6bExiQDs7pn5cQDCFQAcAAzlMQCida5yALo-BFrBkCDW-IQAzgAWwADuOGCqAK5YnYRTEADmS1hhsBQQxAC2EgEEAIYkEIMACsAQKmv9-wvmIC4UCqrAg4N7hLD-n7aq2wdgNTWChIA6eWAAHgARqoAPQAPiQUPB_QUnkAFp4UALfIjAYJQ4AkG4_LAA6aqFwDT4AEwBBwAahAsBNkLAKQdqQB5aAYczWKQHDCDLBfeafCmDLQU_o4z6DA4ANyw8UGAEl_qsZbdPNj5thVtBqcTCLSwAdrOEKIBkf0Ax5GAaOVANlKgBh_wDf2oA_I0AfT6APU9ACPagA0jCQbQCK_oAdv0ApCGAAFSnYAEI0AYXKAWaNAOaOgGUjQCGyoAGdUDFEA5JqALE1ALBygApXQAXqeinYBZRUAnLFZ0SACxVAJ3xgHDTQDYSoA-6MAhdGACHVAJE-EgogDdFQBrchQOrcCYDgNsdLp6mKiKR7BYrDY7A5nNZdF5dQFhaomYMLbcqYRoAdto9AHX6gC1lQCpRpi5117o8pNNoNAsBgPp9YNJZBQZwApF-nxaH0sDJLUD6wOOWhTrAABskG3AQYwQNSYDDMCdRAVB2yXNYSHfrA_xEghtTkYR354dAa6PLUOHIcRRy0ZQM70cBQyhH-1JYIMSiGpcSwcQQSwHGBrhQRgBxQh-xpESM4zWFMsxQQQtgqGYli4HI0ChP8GAaIxBBBCEYTRHQFmWYZRFqauTi4Lo8GqbAICvFsUDQMCv5YkRsqEFJMkYAAMpclJGT-yhLBhG6UURGChZpy7HkRqHoZhsC6M5j4PMCgzBGhPk2TqvlQVsWDbIlYU2dBoQ8aoFTBKEwJRFIrXCYQBKqHVADqaHRRljF-QQ5UgMMByDCccnfgFsnIOFtkafZ1iuLU4VDaKjGmuasDhOFSCwAqgqzNYiEUeIsCnuewK2o6rqer6AYbdV-2HRgx0Zck8ESRdZ6PHWTZtl2vZPTZL1HS4RR0EUyTnZdjyhpGMYJimGYUCDRFg29Lj6K4RTVLDv3AnmRalhW1bo9-mPvckFkE1dGxDmjxXfm02oBKzngANxAA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+title:{
+    text:'图表3：年轻人为什么爱逛寺庙',left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1',},
+  },
+  color:["#FFAB91","#FFD54F","#FFB74D","#FFCC80","#FFE802"],
+  tooltip: {
+    show:true,
+    trigger: 'item',
+    axisPointer: {
+      type: 'cross',
+    },
+    formatter: '{a} <br/>{b} : {c}票'
+  },
+  series: [
+    {
+      name: '微博投票',
+      type: 'funnel',
+      left: '10%',
+      top: 90,
+      bottom: 60,
+      width: '80%',
+      min: 0,
+      max: 60000,
+      minSize: '0%',
+      maxSize:'100%',
+      sort: 'descending',
+      gap: 2,
+      label: {
+        show: true,
+        fontStyle:"normal",
+        color: '#F2E8CD',
+        fontSize:16,
+        position: 'left'
+      },
+      labelLine: {
+        length: 10,
+        lineStyle: {
+          width: 1,
+          type: 'solid'
+        }
+      },
+      itemStyle: {
+        borderColor: '#fff',
+        borderWidth: 1
+      },
+      emphasis: {
+        label: {
+          fontSize: 20
+        },
+        focus: 'funnel',
+        blurScope: 'coordinateSystem'
+      },
+      data: [
+        { value: 60000, name: '缓解压力，寻找精神寄托' },
+        { value: 1962, name: '寺庙周边文创设计圈粉' },
+        { value: 7379, name: '网络营销，成了拍照打卡地' },
+        { value: 5278, name: '大多不用门票，免费' },
+        { value: 933, name: '其他' }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=bar-tick-align
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container"  style="height:100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const pathSymbols = {
+  muyu:
+    'path://M512 291.84s-122.88 97.28-122.88 276.48S512 870.4 512 870.4s120.32-94.72 122.88-299.52c0-186.88-122.88-279.04-122.88-279.04z M803.84 576c-7.68 25.6-20.48 53.76-35.84 81.92-84.48 140.8-194.56 186.88-243.2 199.68-2.56 5.12-2.56 10.24-2.56 10.24S665.6 926.72 844.8 824.32c161.28-89.6 179.2-245.76 179.2-245.76s-97.28-38.4-220.16-2.56z M791.04 350.72s-87.04 12.8-168.96 84.48c12.8 38.4 23.04 81.92 20.48 133.12 0 130.56-48.64 217.6-87.04 263.68 53.76-23.04 135.68-71.68 199.68-181.76 97.28-156.16 35.84-299.52 35.84-299.52zM220.16 576c7.68 25.6 20.48 53.76 35.84 81.92 84.48 140.8 194.56 186.88 243.2 199.68 2.56 5.12 2.56 10.24 2.56 10.24S360.96 924.16 179.2 824.32c-161.28-89.6-179.2-245.76-179.2-245.76s97.28-38.4 220.16-2.56z M232.96 350.72s87.04 12.8 168.96 84.48c-12.8 38.4-23.04 81.92-20.48 133.12 0 130.56 48.64 217.6 87.04 263.68-53.76-23.04-135.68-71.68-199.68-181.76-97.28-156.16-35.84-299.52-35.84-299.52z M353.28 284.16m-58.88 0a58.88 58.88 0 1 0 117.76 0 58.88 58.88 0 1 0-117.76 0Z M512 199.68m-58.88 0a58.88 58.88 0 1 0 117.76 0 58.88 58.88 0 1 0-117.76 0Z M670.72 284.16m-58.88 0a58.88 58.88 0 1 0 117.76 0 58.88 58.88 0 1 0-117.76 0Z',
+    }
+    option = {
+  title:{text:"图表7：省份电子功德榜单",left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1',}},
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['山东省', '河南省', '广东省', '河北省', '江苏省', '湖南省', '湖北省','四川省','辽宁省','山西省'],
+      axisTick: {
+        alignWithLabel: true
+      },
+      axisLabel: {
+      fontSize: 14,
+      margin:15,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+    axisTick: { show: false },
+    axisLine: { show: false },
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      axisLabel: {
+      fontSize: 14,
+      fontWeight:"normal",
+      color: '#F2E8CD',
+    },
+    splitLine: { show: false },
+    axisTick: { show: false },
+    axisLine: { show: false },
+    
+    
+    }
+  ],
+  series: [
+    {
+      name: '电子功德值(单位：亿)',
+      type: 'pictorialBar',
+      symbolRepeat: true,
+      symbolSize: ['80%', '60%'],
+      barCategoryGap: '46%',
+      data: [
+        {
+          value:17.69,itemStyle:{color:'#FF5722'},symbol: pathSymbols.muyu
+        },
+        {
+          value:15.96, itemStyle:{color:'#FF5722'},symbol: pathSymbols.muyu
+        },
+        {
+          value:13.57, itemStyle:{color:'#FF7043'},symbol: pathSymbols.muyu
+        },
+        {
+          value:11.4, itemStyle:{color:'#FF7043'},symbol: pathSymbols.muyu
+        },
+        {
+          value:8.96, itemStyle:{color:'#FF8A65'},symbol: pathSymbols.muyu
+        },
+        {
+          value:6.19, itemStyle:{color:'#FF8A65'},symbol: pathSymbols.muyu
+        },
+        {
+          value:5.93, itemStyle:{color:'#FFAB91'},symbol: pathSymbols.muyu
+        },
+        {
+          value:5.26, itemStyle:{color:'#FFAB91'},symbol: pathSymbols.muyu
+        },
+        {
+          value:5.24, itemStyle:{color:'#FFCCBC'},symbol: pathSymbols.muyu
+        },
+        {
+          value:4.99, itemStyle:{color:'#FFCCBC'},symbol: pathSymbols.muyu
+        }
+     ]
+   }
+  ]
+  };
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

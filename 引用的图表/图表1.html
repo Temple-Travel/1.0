@@ -1,0 +1,158 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=mix-line-bar&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcq66YOAHmHgOSB_aoBYRAjHoC56g3vGBdcoJ_agOASBf2oJl6gXAJAIW6BFf0A7foGdFQBc2lADS4AZhVgAiAMY5oJAE4rZYUHhX0ArHpLkAymACeuPMgUwwliAC98sAEwAWAL6yaLABQWrAWMDaeADaKgDEAGIJAMLJABwADHrxaQleJhnJKgC6gcTA4ZAgDoREYNoQAOaNOFGwlACGpBAAznJB6F29AArAEFqtNQN1NiCelGrawD19ZUR-QSHojQ0AJlNEsGFaHeMAMh0ARjhYDvUArjhr5dX09BlrWxgVWJfApAciAocB0wPdtJ5aoddqCOgA1CA4ADuNVgPQAFsAURhtI9ZLAIR1dgB5aBYGwOBQdLA9HDBZ5EAC2HUaEDUABVZpC0ZjsQ8nhguQ5opQsOMcHJ2pcOtpKMV6dN0BCegYIaiMVi7ri6V9Doq0R0AG44ACCPQAksyWureVrHsFpht0F9cC1oPtkNMYWAOsLKPQ0gBaADMGUAgTqACldAOxGgBXrQDR8nJKIAcE0ARL6AcGNAA6mcoZfzABkZRneemmFhctnsjmcrg8Dno_gZEBIjIA6hBdmB0Xh8g2mwAJHBNdEUAM9nCMgDiHWqXg-002a1IJu6PWF0yhMzmDgWoJwjUiNn6h3Q3t9sBFM_oAE4APT0W-SygXm8ANnvskfGRnt7f7RnX9f9CJn-d4gQ-wHXgBQGfl436AfiH5eDBkHvn-wawWBn5oT4b6lPqQw9KM4w6ICR6Cpu7QYkSWKHkeupEPhFzXLcnqkegzLaKy0C1rOrGwE4WjVp4dYMoc_FgM2A6NEORjQJEzJYMWpFOusQS4egNhLr0q6HOuxBCu0hrUo8NGHNAHSMvMAYhuG0bxiZRBmRZk7TjxR6OTg7JkGWdj4LpQJVu4-DCfqdFseMDgziJsDMgCsAFFFRGtIZzHvFFDFXDcJFHuxnEOCYUXoGJgm1j4BV8c4EmDhQKiydo8mKaxTh1aCxHtEgyWPH4sAAKSUCFDJ0X5tjkZQHUSlF7lbqmmb2eg7nOV2rmHD0IBimAZzijamp8dStIKqR7meVY5a-fqhUBTWwVKVFjLhbAS1Ml0tYFBkr0JRM2jJXlr1vXhy6MZlLGsTld35Wd5UCYFJVlWJlVSdVtX1TDcktZMbVjX4fVKY6qlrLSDQ4CuZ5rvqk3tFZoaRrGCZRcN8zSrKtM_FUWWHGNCQo3maMKPc0BqJAMCwAAFGNACUQO8RCYLaHAY2wAA1O0vUANzg8phyhbAJ5-sG9AAHSXomwbBnrGRAZeesAOxAc-eteEbJim0bttwZQPgm67Pi28Gzt62kiY-JbTv6sUjoMn5ZPJumWa0_porirNsAacu5rumQtZM5UEDVBLR7s5zrU83zAtwCLRk4OLfmHFL4Ky-XCvtJQqu8er6xRdrZ6UM-viJpbltm--wYmP3RtpJeA9dxkwbW--mR90BXvT4mV5Xv7s9eM-aRr_6-SXj4huhxrqkoH4ytAA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 95%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.2/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title:{
+    text:'图表1：年轻人对“寺庙”的网络关注',left: "center",top:"0",textStyle: {fontSize: 24,color:'#f5f1f1',},
+  },
+  color:["#FFCC80","#8F250C"],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+    }
+  },
+  grid: {
+    containLabel: true,
+    top:110,
+  },
+  legend: {
+    data: ['18-30岁用户比例','搜索指数'],
+    bottom:"10",
+    textStyle: {fontSize: 14,color: '#F2E8CD'},
+    itemWidth:25,
+    itemHeight:18,
+    itemGap:20,
+    
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['2019/1/1', '2019/6/1','2020/1/1', '2020/6/1','2021/1/1', '2021/6/1','2022/1/1', '2022/6/1','2023/1/1', '2023/4/1',],
+      axisPointer: {
+        type: 'shadow',
+      },
+      axisLabel: {
+        margin: 10,
+        fontSize: 14,
+        color: '#F2E8CD',
+        fontWeight:"normal",
+      }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '18-30岁用户比例',
+      nameGap:20,
+      nameTextStyle:{
+        fontSize:14,
+        color: '#F2E8CD',
+      },
+      min: 20,
+      max: 50,
+      interval: 10,
+      axisLabel: {
+        margin: 5,
+        fontSize: 14,
+        color: '#F2E8CD',
+        fontWeight:"normal",
+        formatter: '{value} %'
+      },
+    },
+    {
+      type: 'value',
+      name: '搜索指数',
+      nameGap:20,
+      splitLine: { show: false },
+      nameTextStyle:{
+        fontSize:14,
+        color: '#F2E8CD',
+      },
+      min: 0,
+      max: 150000,
+      interval: 50000,
+      axisLabel: {
+        margin: 5,
+        fontSize: 14,
+        color: '#F2E8CD',
+        fontWeight:"normal",
+        formatter: '{value}'
+      }
+    }
+  ],
+  series: [
+    {
+      name: '18-30岁用户比例',
+      type: 'bar',
+      barWidth:50,
+      itemStyle:{normal:{ barBorderRadius:[20,20,0,0]}},
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + '%';
+        }
+      },
+      data: ['31.9','33.0','29.7','26.2','35.0','36.1','43.1','46.3','36.8','47.0'
+      ]
+    },
+    {
+      name: '搜索指数',
+      type: 'line',
+      yAxisIndex: 1,
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + '';
+        }
+      },
+      data: ['624','770','3570','3890','6037','8077','24637','19198','82688','125949']
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
